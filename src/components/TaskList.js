@@ -3,21 +3,21 @@ import PropTypes from 'prop-types';
 import Task from './Task';
 import './TaskList.css';
 
-const TaskList = ({ tasks, completeCallback}) => {
-  const getTaskListJSX = (tasks) => {
-    return tasks.map((task) => {
-      return (
+const TaskList = (props) => {
+  const getTaskListJSX = props.tasks.map((task) => {
+    return (
+      <section key={task.id}>
         <Task
-          key={task.id}
           id={task.id}
           title={task.title}
           isComplete={task.isComplete}
-          completeCallback={completeCallback}
+          onUpdateTask={props.onUpdateTask}
+          deleteCallback={props.deleteCallback}
         />
-      );
-    });
-  };
-  return <ul className="tasks__list no-bullet">{getTaskListJSX(tasks)}</ul>;
+      </section>
+    );
+  });
+  return <ul className="tasks__list no-bullet">{getTaskListJSX}</ul>;
 };
 
 TaskList.propTypes = {
@@ -27,8 +27,9 @@ TaskList.propTypes = {
       title: PropTypes.string.isRequired,
       isComplete: PropTypes.bool.isRequired,
     })
-    ).isRequired,
-    completeCallback: PropTypes.func.isRequired,
+  ),
+  onUpdateTask: PropTypes.func.isRequired,
+  deleteCallback: PropTypes.func.isRequired,
 };
 
 export default TaskList;
