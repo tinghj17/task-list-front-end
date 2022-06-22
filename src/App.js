@@ -71,7 +71,7 @@ const App = () => {
 
   // Call and update the API
   const callAPI = (task) => {
-    const isTaskCompleted = task.isComplete ? 'incomplete' : 'complete';
+    const isTaskCompleted = task.isComplete ? 'mark_incomplete' : 'mark_complete';
 
     axios
       .patch(`${URL}/tasks/${task.id}/${isTaskCompleted}`)
