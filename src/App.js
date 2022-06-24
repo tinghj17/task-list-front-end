@@ -1,10 +1,8 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import TaskList from './components/TaskList.js';
 import './App.css';
-import { useState } from 'react';
-import { useEffect } from 'react';
 import axios from 'axios';
-// import NewTaskForm from './components/NewTaskForm';
+import NewTaskForm from './components/NewTaskForm';
 
 const URL = 'https://task-list-api-c17.herokuapp.com';
 
@@ -140,6 +138,9 @@ const App = () => {
             deleteCallback={deleteTask}
             tasks={taskState}
           />
+        </div>
+        <div>
+          <NewTaskForm addTaskCallback={addTask}/>
         </div>
       </main>
     </div>
