@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import TaskList from './components/TaskList.js';
 import './App.css';
 import axios from 'axios';
@@ -20,13 +20,13 @@ const App = () => {
     },
   ]);
 
-    // Add a Task (will also be used for the NewTaskForm.js)
+  // Add a Task (will also be used for the NewTaskForm.js)
   const addTask = (task) => {
     let isComplete = null;
     if (task.isComplete) {
       isComplete = new Date();
     }
-  
+
     axios
       .post(`${URL}/tasks`, {
         title: task.title,
@@ -44,7 +44,7 @@ const App = () => {
       });
   };
 
-   // Retrieve a Task
+  // Retrieve a Task
   const getTask = () => {
     axios
       .get(`${URL}/tasks`)
@@ -69,7 +69,9 @@ const App = () => {
 
   // Call and update the API
   const callAPI = (task) => {
-    const isTaskCompleted = task.isComplete ? 'mark_incomplete' : 'mark_complete';
+    const isTaskCompleted = task.isComplete
+      ? 'mark_incomplete'
+      : 'mark_complete';
 
     axios
       .patch(`${URL}/tasks/${task.id}/${isTaskCompleted}`)
@@ -80,7 +82,6 @@ const App = () => {
         console.log(error.response.data);
       });
   };
-  
 
   // Toggle Task
   const toggleTaskComplete = (id) => {
@@ -98,15 +99,14 @@ const App = () => {
 
     setComplete(newTaskList);
   };
-//   for (const task of tasks) {
-//     if (task.id === id) {
-//       task.isComplete = !task.isComplete;
-//     }
-//   }
-//   const newTaskList = [...tasks];
-//   setComplete(newTaskList);
-// };
-
+  //   for (const task of tasks) {
+  //     if (task.id === id) {
+  //       task.isComplete = !task.isComplete;
+  //     }
+  //   }
+  //   const newTaskList = [...tasks];
+  //   setComplete(newTaskList);
+  // };
 
   // Delete a Task
   const deleteTask = (id) => {
@@ -125,7 +125,6 @@ const App = () => {
   //   setComplete(updatedTasks);
   // };
 
-
   return (
     <div className="App">
       <header className="App-header">
@@ -138,8 +137,6 @@ const App = () => {
             deleteCallback={deleteTask}
             tasks={taskState}
           />
-        </div>
-        <div>
           <NewTaskForm addTaskCallback={addTask}/>
         </div>
       </main>

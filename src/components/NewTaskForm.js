@@ -34,7 +34,7 @@ const NewTaskForm = (props) => {
 };
 
 NewTaskForm.propTypes = {
-  addStudentCallback: PropTypes.func.isRequired,
+  addTaskCallback: PropTypes.func.isRequired,
 };
 
 export default NewTaskForm;
